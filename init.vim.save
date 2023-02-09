@@ -1,17 +1,21 @@
-"  ~~~ Plugins ~~
-call plug#begin('~/.local/share/nvim/plugged')
+" ~~~ Plugins ~~~
+call plug#begin('~/.local/share/nvim/plugged
+  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   Plug 'lambdalisue/suda.vim'
+  Plug 'jiangmiao/auto-pairs'
   Plug 'machakann/vim-highlightedyank' 
   Plug 'vimwiki/vimwiki'
   Plug 'tpope/vim-markdown'
   Plug 'nelstrom/vim-markdown-folding'
-  Plug 'preservim/nerdtree'
-  Plug 'tc50cal/vim-terminal'
-  Plug 'lukas-reineke/indent-blankline.nvim'
+  Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
+
+" Set up the packages that require lua setup
+lua require('setup')
 
 " Highlight the line on which the cursor lives.
 set nocursorline
@@ -37,9 +41,14 @@ set clipboard=unnamedplus
 " Remove timeout for partially typed commands
 set notimeout
 
+" F keys
+" Quick write session with F2
+map <F2> :mksession! ~/.vim_session<cr>
+" And load session with F3
+map <F3> :source ~/.vim_session<cr>
+
 " Fix indentation
 map <F7> gg=G<C-o><C-o>
-
 " Toggle auto change directory
 map <F8> :set autochdir! autochdir?<CR>
 
@@ -61,22 +70,13 @@ imap <C-e> <end>
 cmap <C-a> <home>
 cmap <C-e> <end>
 
-" Moving lines around
-nmap <C-j> :m +1<cr>
-nmap <C-k> :m -2<cr>
-
 " Control-S Save
 nmap <C-S> :w<cr>
 vmap <C-S> <esc>:w<cr>
-" Save, stay in current
-imap <C-S> <esc>:w<cr>
+" Save, stay in edit
+"imap <C-S> <esc>:w<cr>
 " Save + back into insert
-" imap <C-S> <esc>:w<cr>a
-
-" Control-X quit out of current file
-nmap <C-x> :q<cr>
-vmap <C-x> <esc>:q<cr>
-imap <C-x> <esc>:q<cr>
+imap <C-S> <esc>:w<cr>a
 
 " Control-C Copy in visual mode
 vmap <C-C> y
@@ -236,6 +236,24 @@ set noshowmode
 " Shell
 set shell=/bin/zsh
 
+" Ctrlp
+let g:ctrlp_switch_buffer = '0'
+" Useful for large projects
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=10
+" So that it does not only index starting from current directory
+let g:ctrlp_working_path_mode = ""
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+" Use ag AKA the_silver_searcher for indexing. Faster!!!
+" TIP: Use ~/.ignore to ignore directories/files
+" set grepprg=ag\ --nogroup\ --nocolor
+" let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+""if executable('ag')
+""  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+""endif
+let g:ctrlp_show_hidden =1
+let g:ctrlp_clear_cache_on_exit = 0
+
 " Lightline
 " Get default from :h lightline
 let g:lightline = {
@@ -348,9 +366,3 @@ au BufReadPost *
          \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' 
          \ |   exe "normal! g`\""
          \ | endif
-
-" NERDTree keybinds
-nnoremap <C-f> :NERDTreeFocus<cr>
-nnoremap <C-t> :NERDTreeToggle<cr>
-nnoremap <C-z> :TerminalSplit bash<cr>
-
