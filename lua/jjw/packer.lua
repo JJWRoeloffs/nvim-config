@@ -57,6 +57,7 @@ return require('packer').startup(function(use)
         }
     }
 
+    use { 'nvim-tree/nvim-tree.lua' }
     use { 'folke/trouble.nvim' }
     use { 'mg979/vim-visual-multi' }
     use { 'ggandor/leap.nvim' }
