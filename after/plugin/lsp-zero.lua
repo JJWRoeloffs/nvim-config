@@ -1,5 +1,7 @@
 local lsp = require("lsp-zero")
 
+local lsp_keybinds = require('jjw.lsp-keybinds')
+
 lsp.preset("recommended")
 
 lsp.ensure_installed({
@@ -53,10 +55,7 @@ lsp.set_preferences({
 
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
-
-  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-  vim.keymap.set("n", "<leader>j", function() vim.lsp.buf.hover() end, opts)
-  vim.keymap.set("n", "rn", function() vim.lsp.buf.rename() end, opts)
+  lsp_keybinds.set_keybinds()
 end)
 
 lsp.nvim_workspace()
