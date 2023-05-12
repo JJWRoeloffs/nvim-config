@@ -5,15 +5,39 @@ local lsp_keybinds = require('jjw.lsp-keybinds')
 lsp.preset("recommended")
 
 lsp.ensure_installed({
+    -- Javascript/Typescript/HTML/CSS
     'tsserver',
-    'rust_analyzer',
+    'html',
+
+    -- Python
     'pyright',
+
+    -- Rust
+    'rust_analyzer',
+
+    -- CPP
     'clangd',
     'cmake',
+
+    -- Latex
     'ltex',
-    'html',
+
+    -- Docker
+    'dockerls',
+    'docker_compose_language_service',
+
+    -- SQL
     'sqlls',
-    'tailwindcss',
+
+    -- Scripting
+    'powershell_es',
+    'bashls',
+
+    -- Data formats
+    'yamlls',
+    'lemminx',
+    'taplo',
+    'jsonls',
 })
 
 -- Fix Undefined global 'vim'
