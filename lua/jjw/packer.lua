@@ -56,6 +56,12 @@ return require('packer').startup(function(use)
             { 'nvim-lua/plenary.nvim' }
         }
     }
+    use {
+        'itchyny/lightline.vim',
+        requires = {
+            use { 'tpope/vim-fugitive' }
+        }
+    }
 
     use { 'nvim-tree/nvim-tree.lua' }
     use { 'folke/trouble.nvim' }

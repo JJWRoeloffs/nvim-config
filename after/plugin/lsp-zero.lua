@@ -53,10 +53,7 @@ lsp.set_preferences({
     }
 })
 
-lsp.on_attach(function(client, bufnr)
-  local opts = {buffer = bufnr, remap = false}
-  lsp_keybinds.set_keybinds()
-end)
+lsp.on_attach(lsp_keybinds.set_keybinds())
 
 lsp.nvim_workspace()
 
