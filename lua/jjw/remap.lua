@@ -8,6 +8,9 @@ vim.keymap.set("n", "A", "zzA")
 vim.keymap.set("n", "o", "zzo")
 vim.keymap.set("n", "O", "zzO")
 
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
 vim.keymap.set("n", "Q", "q")
 vim.keymap.set("n", "q", "<Nop>")
 
