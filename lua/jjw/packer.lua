@@ -11,9 +11,9 @@ return require('packer').startup(function(use)
             {'nvim-lua/plenary.nvim'}
         }
     }
-    use { 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'} }
+    use {{ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}}
     use { 'nvim-treesitter/nvim-treesitter-context' }
-    use { 'nvim-treesitter/playground'} 
+    use { 'nvim-treesitter/playground'}
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
@@ -44,7 +44,7 @@ return require('packer').startup(function(use)
     }
     -- The scala LSP wants to be installed like this
     use {
-        'scalameta/nvim-metals', 
+        'scalameta/nvim-metals',
         requires = {
             { "nvim-lua/plenary.nvim" },
             { "mfussenegger/nvim-dap" },
@@ -57,10 +57,10 @@ return require('packer').startup(function(use)
         }
     }
     use {
-        'itchyny/lightline.vim',
-        requires = {
-            use { 'tpope/vim-fugitive' }
-        }
+      'itchyny/lightline.vim',
+      requires = {
+        use { 'tpope/vim-fugitive' },
+      }
     }
 
     use { 'nvim-tree/nvim-tree.lua' }
