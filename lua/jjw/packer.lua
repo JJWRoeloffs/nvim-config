@@ -11,7 +11,7 @@ return require('packer').startup(function(use)
             {'nvim-lua/plenary.nvim'}
         }
     }
-    use {{ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}}
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use { 'nvim-treesitter/nvim-treesitter-context' }
     use { 'nvim-treesitter/playground'}
     use {
@@ -63,10 +63,13 @@ return require('packer').startup(function(use)
       }
     }
 
+
     use { 'nvim-tree/nvim-tree.lua' }
     use { 'folke/trouble.nvim' }
     use { 'mg979/vim-visual-multi' }
     use { 'ggandor/leap.nvim' }
     use { 'tpope/vim-commentary' }
     use { 'tpope/vim-surround' }
+    use { "theprimeagen/harpoon" }
+    use { 'mbbill/undotree' }
 end)
