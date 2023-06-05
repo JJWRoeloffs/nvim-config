@@ -1,7 +1,7 @@
-local metals = require('metals')
+local metals = require("metals")
 local metals_config = metals.bare_config()
 
-local lsp_keybinds = require('jjw.lsp-keybinds')
+local lsp_keybinds = require("jjw.lsp-keybinds")
 
 metals_config.settings = {
     showImplicitArguments = true,
@@ -9,10 +9,11 @@ metals_config.settings = {
 
 metals_config.on_attach = function(client, bufnr)
     metals.setup_dap()
-    lsp_keybinds.set_keybinds()
+    lsp_keybinds.set_keybinds(client, bufnr)
+    lsp_keybinds.set_formatting(client, bufnr)
 end
 
-vim.keymap.set('n', '<leader>ws', function()
+vim.keymap.set("n", "<leader>ws", function()
     metals.hover_worksheet()
 end)
 
@@ -27,4 +28,3 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
     group = nvim_metals_group,
 })
-
