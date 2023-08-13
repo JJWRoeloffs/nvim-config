@@ -1,4 +1,21 @@
-vim.cmd [[packadd packer.nvim]]
+local ensure_packer = function()
+    local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+        vim.fn.system({
+            'git',
+            'clone',
+            '--depth',
+            '1',
+            'https://github.com/wbthomason/packer.nvim',
+            install_path
+        })
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
+end
+
+local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
     -- Packer can manage itself
@@ -63,7 +80,6 @@ return require('packer').startup(function(use)
       }
     }
 
-
     use { 'nvim-tree/nvim-tree.lua' }
     use { 'folke/trouble.nvim' }
     use { 'mg979/vim-visual-multi' }
@@ -72,4 +88,9 @@ return require('packer').startup(function(use)
     use { 'tpope/vim-surround' }
     use { "theprimeagen/harpoon" }
     use { 'mbbill/undotree' }
+
+    if packer_bootstrap then
+        require('packer').sync()
+    end
 end)
+

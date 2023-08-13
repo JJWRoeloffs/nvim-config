@@ -3,7 +3,6 @@ require('nvim-treesitter.configs').setup {
     ensure_installed = {
         -- Basic vim stuff
         "vim",
-        "help",
         "query",
         "lua",
 

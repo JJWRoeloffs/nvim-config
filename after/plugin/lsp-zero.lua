@@ -20,7 +20,6 @@ lsp.ensure_installed({
 
     -- CPP
     'clangd',
-    'cmake',
 
     -- Latex
     'ltex',
