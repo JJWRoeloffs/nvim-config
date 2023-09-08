@@ -1,4 +1,4 @@
-require("trouble").setup {
+require("trouble").setup({
     icons = false,
     fold_open = "v", -- icon used for open folds
     fold_closed = ">", -- icon used for closed folds
@@ -8,11 +8,14 @@ require("trouble").setup {
         error = "error",
         warning = "warn",
         hint = "hint",
-        information = "info"
+        information = "info",
     },
-    use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
-}
+    use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
+})
 
-vim.keymap.set("n", "<leader>t", "<cmd>TroubleToggle document_diagnostics<cr>",
-  {silent = true, noremap = true}
+vim.keymap.set(
+    "n",
+    "<leader>t",
+    "<cmd>TroubleToggle document_diagnostics<cr>",
+    { silent = true, noremap = true }
 )

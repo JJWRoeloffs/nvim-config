@@ -1,78 +1,78 @@
 local lsp = require("lsp-zero")
 
-local lsp_keybinds = require('jjw.lsp-keybinds')
+local lsp_keybinds = require("jjw.lsp-keybinds")
 
 lsp.preset("recommended")
 
 lsp.ensure_installed({
     -- vim
-    'lua_ls',
+    "lua_ls",
 
     -- Javascript/Typescript/HTML/CSS
-    'tsserver',
-    'html',
+    "tsserver",
+    "html",
 
     -- Python
-    'pyright',
+    "pyright",
 
     -- Rust
-    'rust_analyzer',
+    "rust_analyzer",
 
     -- CPP
-    'clangd',
+    "clangd",
 
     -- Latex
-    'ltex',
+    "ltex",
 
     -- Docker
-    'dockerls',
-    'docker_compose_language_service',
+    "dockerls",
+    "docker_compose_language_service",
 
     -- SQL
-    'sqlls',
+    "sqlls",
 
     -- Scripting
-    'powershell_es',
-    'bashls',
+    "powershell_es",
+    "bashls",
 
     -- Data formats
-    'yamlls',
-    'lemminx',
-    'taplo',
-    'jsonls',
+    "yamlls",
+    "lemminx",
+    "taplo",
+    "jsonls",
 })
 
 -- Fix Undefined global 'vim'
-lsp.configure('lua-language-server', {
+lsp.configure("lua-language-server", {
     settings = {
         Lua = {
             diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
+                globals = { "vim" },
+            },
+        },
+    },
 })
 
-local cmp = require('cmp')
+local cmp = require("cmp")
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ["<C-Space>"] = cmp.mapping.complete(),
 })
 
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
+cmp_mappings["<Tab>"] = nil
+cmp_mappings["<S-Tab>"] = nil
 
 lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
+    mapping = cmp_mappings,
 })
 
 lsp.set_preferences({
     suggest_lsp_servers = false,
     sign_icons = {
-        error = 'E',
-        warn = 'W',
-        hint = 'H',
-        info = 'I'
-    }
+        error = "E",
+        warn = "W",
+        hint = "H",
+        info = "I",
+    },
 })
 
 lsp.on_attach(lsp_keybinds.set_keybinds())
