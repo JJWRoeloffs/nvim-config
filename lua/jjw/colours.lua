@@ -1,5 +1,3 @@
--- TODO this should get highlighted
-
 vim.cmd([[
   augroup lena_colors
   " lena.vim - Vim color scheme for 16-color terminals, heavily based on noctu

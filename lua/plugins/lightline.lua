@@ -1,4 +1,5 @@
-vim.cmd([[
+local function setup()
+    vim.cmd([[
     let g:lightline = {
         \ 'colorscheme': 'lena',
         \ 'active': {
@@ -34,3 +35,12 @@ vim.cmd([[
         \ 't': 'T',
         \ }
 ]])
+end
+
+return {
+    "itchyny/lightline.vim",
+    dependencies = {
+        { "tpope/vim-fugitive" },
+    },
+    config = setup,
+}
