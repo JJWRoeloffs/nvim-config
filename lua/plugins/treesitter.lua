@@ -16,6 +16,7 @@ return {
             "cpp",
             "rust",
             "latex",
+            "haskell",
 
             -- Webdev
             "javascript",
