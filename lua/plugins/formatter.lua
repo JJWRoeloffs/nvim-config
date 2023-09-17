@@ -35,10 +35,6 @@ local function setup()
                 require("formatter.filetypes.cpp").clangformat,
             },
 
-            java = {
-                require("formatter.filetypes.java").clangformat,
-            },
-
             rust = {
                 require("formatter.filetypes.rust").rustfmt,
             },
@@ -60,7 +56,7 @@ local function setup()
             },
 
             yaml = {
-                require("formatter.filetypes.yaml").pyaml,
+                require("formatter.filetypes.yaml").yamlfmt,
             },
 
             toml = {
@@ -80,10 +76,25 @@ local function setup()
         command = "FormatWriteLock",
     })
 
-    vim.keymap.set("n", "F", "<cmd>Format")
+    vim.keymap.set("n", "F", "<cmd>FormatLock<cr>")
+
+    require("mason-extensions").ensure_installed({
+        "black",
+        "stylua",
+        "prettier",
+        "clang-format",
+        "rustfmt",
+        "latexindent",
+        "shfmt",
+        "yamlfmt",
+    })
 end
 
 return {
     "mhartington/formatter.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    cmd = { "FormatLock", "FormatWriteLock", "Format", "FormatWrite" },
+    event = { "BufWritePre" },
+    keys = { "F" },
     config = setup,
 }
