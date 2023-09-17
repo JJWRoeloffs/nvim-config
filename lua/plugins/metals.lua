@@ -2,11 +2,17 @@ local function setup()
     local metals = require("metals")
     local metals_config = metals.bare_config()
 
+    vim.opt_global.shortmess:remove("F")
+
     local lsp_keybinds = require("jjw.lsp-keybinds")
 
     metals_config.settings = {
         showImplicitArguments = true,
+        showImplicitConversionsAndClasses = true,
+        fallbackScalaVersion = "3.3.0",
     }
+
+    metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     metals_config.on_attach = function(client, bufnr)
         metals.setup_dap()
@@ -14,9 +20,36 @@ local function setup()
         lsp_keybinds.set_formatting(client, bufnr)
     end
 
-    vim.keymap.set("n", "<leader>ws", function()
-        metals.hover_worksheet()
-    end)
+    metals_config.init_options.statusBarProvider = "on"
+
+    vim.keymap.set("n", "<leader>ws", metals.hover_worksheet)
+
+    vim.keymap.set("n", "<leader>mc", require("telescope").extensions.metals.commands)
+
+    local tvp = require("metals.tvp")
+    vim.keymap.set("n", "<leader>mtt", tvp.toggle_tree_view)
+    vim.keymap.set("n", "<leader>mtr", tvp.reveal_in_tree)
+
+    local dap = require("dap")
+    dap.configurations.scala = {
+        {
+            type = "scala",
+            request = "launch",
+            name = "RunOrTest",
+            metals = {
+                runType = "runOrTestFile",
+                --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+            },
+        },
+        {
+            type = "scala",
+            request = "launch",
+            name = "Test Target",
+            metals = {
+                runType = "testTarget",
+            },
+        },
+    }
 
     local nvim_metals_group =
         vim.api.nvim_create_augroup("nvim-metals", { clear = true })
@@ -24,7 +57,7 @@ local function setup()
         -- NOTE: You may or may not want java included here. You will need it if you
         -- want basic Java support but it may also conflict if you are using
         -- something like nvim-jdtls which also works on a java filetype autocmd.
-        pattern = { "scala", "sbt", "java" },
+        pattern = { "scala", "sbt" },
         callback = function()
             metals.initialize_or_attach(metals_config)
         end,
@@ -35,8 +68,16 @@ end
 return {
     "scalameta/nvim-metals",
     dependencies = {
+        -- Hard
         { "nvim-lua/plenary.nvim" },
-        { "mfussenegger/nvim-dap" },
+        { "hrsh7th/cmp-nvim-lsp" },
+
+        -- for integration
+        { "mfussenegger/nvim-dap", config = require("plugins.nvim-dap").setup },
+        { "VonHeikemen/lsp-zero.nvim", config = require("plugins.lsp-zero").setup },
+        require("plugins.telescope"),
+        require("plugins.lightline"),
     },
+    ft = { "scala", "sbt", "java" },
     config = setup,
 }

@@ -1,23 +1,28 @@
 local function setup()
     vim.cmd([[
+    function! MetalStatus() abort
+      return get(g:, 'metals_status', '')
+    endfunction
+
     let g:lightline = {
         \ 'colorscheme': 'lena',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
+        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified', 'metals' ] ],
         \   'right': [ [ 'lineinfo' ],
         \              [ 'percent' ],
         \              [ 'filetype' ] ]
         \ },
         \ 'inactive': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
+        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified', 'metals' ] ],
         \   'right': [ [ 'lineinfo' ],
         \              [ 'percent' ],
         \              [ 'filetype' ] ]
         \ },
         \ 'component_function': {
-        \   'gitbranch': 'FugitiveHead'
+        \   'gitbranch': 'FugitiveHead',
+        \   'metals': 'MetalStatus'
         \ },
         \ }
 
