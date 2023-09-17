@@ -8,7 +8,7 @@ local function setup()
     local diffview = require("diffview")
 
     diffview.setup({
-        use_icons = false,
+        use_icons = true,
         view = {
             default = {
                 winbar_info = true,
@@ -96,6 +96,7 @@ return {
     "sindrets/diffview.nvim",
     dependencies = {
         { "nvim-lua/plenary.nvim" },
+        { "nvim-tree/nvim-web-devicons" },
     },
     cmd = { "Do", "Df" },
     config = setup,
