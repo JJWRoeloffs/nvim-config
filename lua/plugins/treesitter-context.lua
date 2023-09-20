@@ -1,8 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        config = require("plugins.treesitter").config,
+        require("plugins.treesitter"),
     },
     config = {
         min_window_height = 20,
