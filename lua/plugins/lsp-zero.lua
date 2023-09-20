@@ -16,9 +16,6 @@ local function setup()
         -- Python
         "pyright",
 
-        -- Rust
-        "rust_analyzer",
-
         -- CPP
         "clangd",
 
@@ -43,6 +40,14 @@ local function setup()
         "jsonls",
     })
 
+    local lspconfig = require("lspconfig")
+    lspconfig.clangd.setup({
+        on_attach = function(client, bufnr)
+            client.server_capabilities.signatureHelpProvider = false
+        end,
+        capabilities = vim.lsp.protocol.make_client_capabilities(),
+    })
+
     require("neodev").setup({
         library = {
             plugins = vim.tbl_keys(require("lazy.core.config").plugins),
@@ -55,7 +60,10 @@ local function setup()
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-y>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+        }),
     })
 
     lsp.setup_nvim_cmp({

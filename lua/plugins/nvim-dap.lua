@@ -1,3 +1,32 @@
+local function setup_codelldb()
+    local dap = require("dap")
+    require("mason-extensions").ensure_installed("codelldb")
+
+    dap.adapters.codelldb = {
+        type = "server",
+        port = "${port}",
+        executable = {
+            command = vim.fn.stdpath("data") .. "/mason/packages/codelldb/codelldb",
+            args = { "--port", "${port}" },
+        },
+    }
+
+    dap.configurations.c = {
+        {
+            name = "codelldb",
+            type = "codelldb",
+            request = "launch",
+            program = function()
+                return vim.fn.input("Path to executable: " .. vim.fn.getcwd() .. "/")
+            end,
+            cwd = "${workspaceFolder}",
+            terminal = "integrated",
+        },
+    }
+
+    dap.configurations.cpp = dap.configurations.c
+end
+
 local function setup()
     local dap = require("dap")
     local dapui = require("dapui")
@@ -24,6 +53,8 @@ local function setup()
     vim.keymap.set("n", "<leader>dcl", dap.clear_breakpoints, opts)
 
     vim.keymap.set("n", "<leader>da", dapui.eval, opts)
+
+    setup_codelldb()
 end
 
 return {
@@ -32,7 +63,7 @@ return {
         { "rcarriga/nvim-dap-ui" },
         require("plugins.treesitter"),
     },
-    lazy = true,
+    ft = { "cpp", "c" },
     setup = setup,
     build = "npm i @vscode/codicons",
 }
