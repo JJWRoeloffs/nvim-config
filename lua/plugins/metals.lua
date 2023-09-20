@@ -22,7 +22,7 @@ local function setup()
 
     metals_config.init_options.statusBarProvider = "on"
 
-    vim.keymap.set("n", "<leader>ws", metals.hover_worksheet)
+    vim.keymap.set("n", "<leader>mws", metals.hover_worksheet)
 
     vim.keymap.set("n", "<leader>mc", require("telescope").extensions.metals.commands)
 
@@ -54,9 +54,6 @@ local function setup()
     local nvim_metals_group =
         vim.api.nvim_create_augroup("nvim-metals", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
-        -- NOTE: You may or may not want java included here. You will need it if you
-        -- want basic Java support but it may also conflict if you are using
-        -- something like nvim-jdtls which also works on a java filetype autocmd.
         pattern = { "scala", "sbt" },
         callback = function()
             metals.initialize_or_attach(metals_config)
@@ -78,6 +75,6 @@ return {
         require("plugins.telescope"),
         require("plugins.lightline"),
     },
-    ft = { "scala", "sbt", "java" },
+    ft = { "scala", "sbt" },
     config = setup,
 }

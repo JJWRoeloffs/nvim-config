@@ -34,9 +34,8 @@ local function setup()
             cpp = {
                 require("formatter.filetypes.cpp").clangformat,
             },
-
-            rust = {
-                require("formatter.filetypes.rust").rustfmt,
+            java = {
+                require("formatter.filetypes.java").clangformat,
             },
 
             haskell = {
