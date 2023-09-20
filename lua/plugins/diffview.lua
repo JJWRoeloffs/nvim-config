@@ -8,7 +8,7 @@ local function setup()
     local diffview = require("diffview")
 
     diffview.setup({
-        use_icons = true,
+        use_icons = false,
         view = {
             default = {
                 winbar_info = true,
