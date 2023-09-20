@@ -1,5 +1,5 @@
 local function setup()
-    local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+    local path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
     local dap = require("dap-python")
     dap.setup(path)
 
@@ -11,13 +11,11 @@ local function setup()
 end
 
 return {
-    {
-        "mfussenegger/nvim-dap-python",
-        dependencies = {
-            { "mfussenegger/nvim-dap", config = require("plugins.nvim-dap").setup },
-            { "williamboman/mason.nvim" },
-        },
-        ft = { "python" },
-        config = setup,
+    "mfussenegger/nvim-dap-python",
+    dependencies = {
+        { "mfussenegger/nvim-dap", config = require("plugins.nvim-dap").setup },
+        { "williamboman/mason.nvim" },
     },
+    ft = { "python" },
+    config = setup,
 }
