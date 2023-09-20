@@ -33,7 +33,7 @@ local function install(pkg, version)
                     vim.log.levels.ERROR
                 )
             end
-        end)
+      end)
     )
 end
 
@@ -43,7 +43,9 @@ local function install_quiet(package_name, version)
         install(pkg, version)
     else
         notify(
-            ("[mason-extensions] could not install %s. Not a package"):format(pkg.name)
+            ("[mason-extensions] could not install %s. Not a package"):format(
+                package_name
+            )
         )
     end
 end
