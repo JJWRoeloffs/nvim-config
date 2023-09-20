@@ -26,7 +26,7 @@ local function setup()
 
     vim.keymap.set(
         "n",
-        "<leader>r",
+        "<leader>do",
         "<cmd>TodoTelescope<cr>",
         { silent = true, noremap = true }
     )
