@@ -1,9 +1,1 @@
-local function setup()
-    vim.opt.list = true
-    require("indent_blankline").setup()
-end
-
-return {
-    "lukas-reineke/indent-blankline.nvim",
-    config = setup,
-}
+return { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }
