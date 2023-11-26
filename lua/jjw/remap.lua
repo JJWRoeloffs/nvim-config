@@ -20,15 +20,13 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({ "n", "v" }, "<leader>dd", [["_d]])
 
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-
-vim.keymap.set("n", "J", "")
+vim.keymap.set("v", "K", "<CMD>m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", "<CMD>m '>+1<CR>gv=gv")
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
-vim.keymap.set("n", "<C-c>", ":noh<CR>")
+vim.keymap.set("n", "<C-c>", "<CMD>noh<CR>")
 
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod -x %<CR>")
-vim.keymap.set("n", "<leader>X", "<cmd>!chmod x %<CR>")
+vim.keymap.set("n", "<leader>x", "<CMD>!chmod -x %<CR>")
+vim.keymap.set("n", "<leader>X", "<CMD>!chmod +x %<CR>")
