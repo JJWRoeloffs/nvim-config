@@ -18,8 +18,8 @@ local function setup_crates()
     vim.keymap.set("v", "<leader>rcU", crates.upgrade_crates, opts)
     vim.keymap.set("n", "<leader>rcA", crates.upgrade_all_crates, opts)
 
-    vim.keymap.set("n", "<leader>rce", crates.expand_plain_crate_to_inline_table, opts)
-    vim.keymap.set("n", "<leader>rcE", crates.extract_crate_into_table, opts)
+    -- vim.keymap.set("n", "<leader>rce", crates.expand_plain_crate_to_inline_table, opts)
+    -- vim.keymap.set("n", "<leader>rcE", crates.extract_crate_into_table, opts)
 
     vim.keymap.set("n", "<leader>rcH", crates.open_homepage, opts)
     vim.keymap.set("n", "<leader>rcR", crates.open_repository, opts)
@@ -28,7 +28,8 @@ local function setup_crates()
 end
 
 local function on_attatch(client, bufnr)
-    require("mason-extensions").ensure_installed("codelldb")
+    -- rustup component add rls rust-analysis rust-src
+    require("mason-extensions").ensure_installed({ "codelldb", "rust-analyzer" })
 
     local lsp_keybinds = require("jjw.lsp-keybinds")
     lsp_keybinds.set_keybinds(client, bufnr)

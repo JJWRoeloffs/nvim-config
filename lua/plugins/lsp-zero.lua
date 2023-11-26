@@ -120,7 +120,6 @@ return {
         "html",
         "css",
         "python",
-        "rust",
         "cpp",
         "latex",
         "docker",
