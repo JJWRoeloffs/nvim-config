@@ -32,6 +32,7 @@ local function setup()
         -- Scripting
         "powershell_es",
         "bashls",
+        "r_language_server",
 
         -- Data formats
         "yamlls",
@@ -44,6 +45,14 @@ local function setup()
     lspconfig.clangd.setup({
         on_attach = function(client, bufnr)
             client.server_capabilities.signatureHelpProvider = false
+            lsp_keybinds.set_keybinds()
+        end,
+        capabilities = vim.lsp.protocol.make_client_capabilities(),
+    })
+    lspconfig.r_language_server.setup({
+        on_attach = function(client, bufnr)
+            lsp_keybinds.set_keybinds(client, bufnr)
+            lsp_keybinds.set_formatting(client, bufnr)
         end,
         capabilities = vim.lsp.protocol.make_client_capabilities(),
     })
@@ -122,6 +131,7 @@ return {
         "python",
         "cpp",
         "latex",
+        "r",
         "docker",
         "sql",
         "powershell",
