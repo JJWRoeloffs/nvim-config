@@ -7,7 +7,7 @@ local function setup()
 
     vim.keymap.set("n", "<leader>pdm", dap.test_method)
     vim.keymap.set("n", "<leader>pdc", dap.test_class)
-    vim.keymap.set("n", "<leader>pds", dap.debug_selection)
+    vim.keymap.set("v", "<leader>pds", dap.debug_selection)
 end
 
 return {
