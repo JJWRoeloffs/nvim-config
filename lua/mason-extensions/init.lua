@@ -33,7 +33,7 @@ local function install(pkg, version)
                     vim.log.levels.ERROR
                 )
             end
-      end)
+        end)
     )
 end
 
