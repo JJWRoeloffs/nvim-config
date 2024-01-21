@@ -1,7 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = {
+    opts = {
         ensure_installed = {
             -- Basic vim stuff
             "vim",
