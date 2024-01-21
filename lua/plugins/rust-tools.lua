@@ -24,32 +24,6 @@ local function setup_crates()
     vim.keymap.set("n", "<leader>rcC", crates.open_crates_io, opts)
 end
 
-local function setup_rustacean()
-    local cmp = require("cmp")
-    cmp.setup({
-        snippet = {
-            expand = function(args)
-                require("luasnip").lsp_expand(args.body)
-            end,
-        },
-        mapping = cmp.mapping.preset.insert({
-            ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-            ["<C-f>"] = cmp.mapping.scroll_docs(4),
-            ["<C-e>"] = cmp.mapping.abort(),
-            ["<C-y>"] = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
-            }),
-        }),
-        sources = cmp.config.sources({
-            { name = "nvim_lsp" },
-            { name = "luasnip" },
-        }, {
-            { name = "buffer" },
-        }),
-    })
-end
-
 local function on_attach(client, bufnr)
     require("mason-extensions").ensure_installed({ "codelldb" })
     -- Additionally:
@@ -94,7 +68,7 @@ local function on_attach(client, bufnr)
         vim.cmd.RustLsp("explainError")
     end, opts)
 
-    setup_rustacean()
+    require("jjw.lsp-keybinds").set_cmp()
 end
 
 return {

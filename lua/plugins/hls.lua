@@ -19,37 +19,11 @@ local function set_hls_keybinds(client, bufnr)
     vim.keymap.set("n", "<leader>hrq", haskell_tools.repl.quit, opts)
 end
 
-local function setup()
-    local cmp = require("cmp")
-    cmp.setup({
-        snippet = {
-            expand = function(args)
-                require("luasnip").lsp_expand(args.body)
-            end,
-        },
-        mapping = cmp.mapping.preset.insert({
-            ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-            ["<C-f>"] = cmp.mapping.scroll_docs(4),
-            ["<C-e>"] = cmp.mapping.abort(),
-            ["<C-y>"] = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
-            }),
-        }),
-        sources = cmp.config.sources({
-            { name = "nvim_lsp" },
-            { name = "luasnip" },
-        }, {
-            { name = "buffer" },
-        }),
-    })
-end
-
 local function make_setup()
     vim.g.haskell_tools = {
         hls = { on_attach = set_hls_keybinds },
     }
-    return setup
+    return require("jjw.lsp-keybinds").set_cmp
 end
 
 return {
@@ -70,5 +44,5 @@ return {
         { "rafamadriz/friendly-snippets" },
     },
     ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
-    setup = make_setup(),
+    config = make_setup(),
 }
