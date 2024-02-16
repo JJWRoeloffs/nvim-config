@@ -12,6 +12,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("n", "Q", "q")
 vim.keymap.del("n", "q")
+vim.keymap.set("t", "<C-c>", [[<C-c><C-\><C-n>]])
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
