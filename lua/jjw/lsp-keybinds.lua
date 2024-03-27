@@ -5,7 +5,7 @@ function M.set_keybinds(client, bufnr)
     local telescope = require("telescope.builtin")
 
     vim.keymap.set("n", "gd", telescope.lsp_definitions, opts)
-    vim.keymap.set("n", "gt", telescope.lsp_type_definitions, opts)
+    vim.keymap.set("n", "<leader>gt", telescope.lsp_type_definitions, opts)
     vim.keymap.set("n", "rn", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
     vim.keymap.set("n", "<leader>v", vim.diagnostic.open_float, opts)
