@@ -19,6 +19,9 @@ local function setup()
         -- CPP
         "clangd",
 
+        -- go
+        "gopls",
+
         -- Latex
         "ltex",
 
@@ -145,6 +148,7 @@ return {
         "css",
         "python",
         "cpp",
+        "go",
         "latex",
         "r",
         "docker",

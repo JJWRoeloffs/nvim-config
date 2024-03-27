@@ -38,6 +38,10 @@ local function setup()
                 require("formatter.filetypes.java").clangformat,
             },
 
+            go = {
+                require("formatter.filetypes.go").gofmt,
+            },
+
             haskell = {
                 require("formatter.filetypes.haskell").stylish_haskell,
             },
@@ -82,7 +86,6 @@ local function setup()
         "stylua",
         "prettier",
         "clang-format",
-        "rustfmt",
         "latexindent",
         "shfmt",
         "yamlfmt",

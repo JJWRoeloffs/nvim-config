@@ -14,6 +14,7 @@ return {
             "python",
             "c",
             "cpp",
+            "go",
             "rust",
             "latex",
             "haskell",
