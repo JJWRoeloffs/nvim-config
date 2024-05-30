@@ -95,7 +95,12 @@ return {
         },
         init = function()
             vim.g.rustaceanvim = {
-                server = { on_attach = on_attach },
+                server = {
+                    on_attach = on_attach,
+                    default_settings = {
+                        ["rust-analyzer"] = { cargo = { features = "all" } },
+                    },
+                },
             }
         end,
         ft = { "rust" },
