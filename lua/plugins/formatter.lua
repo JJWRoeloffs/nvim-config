@@ -1,3 +1,11 @@
+local function ormolu()
+    return {
+        exe = "ormolu",
+        args = { "--stdin-input-file " .. vim.fn.getcwd() },
+        stdin = true,
+    }
+end
+
 local function setup()
     local lsp_keybinds = require("jjw.lsp-keybinds")
 
@@ -42,9 +50,7 @@ local function setup()
                 require("formatter.filetypes.go").gofmt,
             },
 
-            haskell = {
-                require("formatter.filetypes.haskell").stylish_haskell,
-            },
+            haskell = { ormolu },
 
             latex = {
                 require("formatter.filetypes.latex").latexindent,
