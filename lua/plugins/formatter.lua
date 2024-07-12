@@ -42,9 +42,6 @@ local function setup()
             cpp = {
                 require("formatter.filetypes.cpp").clangformat,
             },
-            java = {
-                require("formatter.filetypes.java").clangformat,
-            },
 
             go = {
                 require("formatter.filetypes.go").gofmt,
