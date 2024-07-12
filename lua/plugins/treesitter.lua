@@ -7,6 +7,8 @@ return {
             "vim",
             "query",
             "lua",
+            "markdown",
+            "markdown_inline",
 
             -- Main languages
             "java",

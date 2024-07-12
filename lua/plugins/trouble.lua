@@ -1,31 +1,52 @@
-local function setup()
-    local trouble = require("trouble")
-    trouble.setup({
-        icons = false,
-        fold_open = "v", -- icon used for open folds
-        fold_closed = ">", -- icon used for closed folds
-        indent_lines = false, -- add an indent guide below the fold icons
-        signs = {
-            -- icons / text used for a diagnostic
-            error = "error",
-            warning = "warn",
-            hint = "hint",
-            information = "info",
-        },
-        use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
-    })
-
-    vim.keymap.set("n", "<leader>t", function()
-        trouble.toggle("document_diagnostics")
-    end, { silent = true, noremap = true })
-end
-
 return {
     "folke/trouble.nvim",
+    opts = {
+        modes = {
+            test = {
+                mode = "diagnostics",
+                preview = {
+                    type = "split",
+                    relative = "win",
+                    position = "right",
+                    size = 0.3,
+                },
+            },
+        },
+    },
+    cmd = "Trouble",
     dependencies = {
         { "nvim-tree/nvim-web-devicons" },
     },
-    cmd = { "Trouble", "TroubleClose", "TroubleToggle", "TroubleRefresh" },
-    keys = { "<leader>t" },
-    config = setup,
+    keys = {
+        {
+            "<leader>tt",
+            "<cmd>Trouble diagnostics toggle<cr>",
+            desc = "Diagnostics (Trouble)",
+        },
+        {
+            "<leader>tT",
+            "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+            desc = "Buffer Diagnostics (Trouble)",
+        },
+        {
+            "<leader>ts",
+            "<cmd>Trouble symbols toggle focus=false<cr>",
+            desc = "Symbols (Trouble)",
+        },
+        {
+            "<leader>tl",
+            "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+            desc = "LSP Definitions / references / ... (Trouble)",
+        },
+        {
+            "<leader>tL",
+            "<cmd>Trouble loclist toggle<cr>",
+            desc = "Location List (Trouble)",
+        },
+        {
+            "<leader>tQ",
+            "<cmd>Trouble qflist toggle<cr>",
+            desc = "Quickfix List (Trouble)",
+        },
+    },
 }
