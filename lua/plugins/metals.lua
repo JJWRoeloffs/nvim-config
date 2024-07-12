@@ -9,7 +9,7 @@ local function setup()
     metals_config.settings = {
         showImplicitArguments = true,
         showImplicitConversionsAndClasses = true,
-        fallbackScalaVersion = "3.3.0",
+        fallbackScalaVersion = "3.3.3",
     }
 
     metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -54,7 +54,7 @@ local function setup()
     local nvim_metals_group =
         vim.api.nvim_create_augroup("nvim-metals", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "scala", "sbt" },
+        pattern = { "scala", "sbt", "java" },
         callback = function()
             metals.initialize_or_attach(metals_config)
         end,
@@ -75,6 +75,6 @@ return {
         require("plugins.telescope"),
         require("plugins.lightline"),
     },
-    ft = { "scala", "sbt" },
+    ft = { "scala", "sbt", "java" },
     config = setup,
 }

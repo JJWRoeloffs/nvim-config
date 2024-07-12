@@ -117,6 +117,7 @@ vim.cmd([[
   hi javaMethodDecl  ctermfg=4  cterm=bold
   hi javaScopeDecl   ctermfg=4  cterm=bold
   hi javaClassDecl   ctermfg=4  cterm=bold
+  hi @lsp.type.modifier.java ctermfg=4 cterm=bold
 
   " Makes scala special (`this` and `new`) not PreProc
   hi scalaSpecial    ctermfg=5
