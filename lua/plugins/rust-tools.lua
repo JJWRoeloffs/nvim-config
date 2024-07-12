@@ -107,9 +107,9 @@ return {
     },
     {
         "saecki/crates.nvim",
-        tag = "v0.3.0",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        tag = "stable",
         config = setup_crates,
         ft = { "rust", "toml" },
+        dependencies = { "nvim-lua/plenary.nvim" },
     },
 }
