@@ -74,7 +74,7 @@ end
 return {
     {
         "mrcjkb/rustaceanvim",
-        version = "^3", -- Recommended
+        version = "^4", -- Recommended
         dependencies = {
             { "hrsh7th/nvim-cmp" },
             { "hrsh7th/cmp-nvim-lsp" },
