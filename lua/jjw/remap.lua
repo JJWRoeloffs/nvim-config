@@ -31,5 +31,3 @@ vim.keymap.set("n", "<C-c>", "<CMD>noh<CR>")
 
 vim.keymap.set("n", "<leader>x", "<CMD>!chmod -x %<CR>")
 vim.keymap.set("n", "<leader>X", "<CMD>!chmod +x %<CR>")
-
-vim.keymap.set("n", "<leader>lc", "<CMD>!pdflatex %<CR>")
