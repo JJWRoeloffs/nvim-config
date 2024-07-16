@@ -67,33 +67,11 @@ local function setup()
         },
     })
 
-    local cmp = require("cmp")
-    local cmp_mappings = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<C-y>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        }),
-    })
-
-    cmp.setup.cmdline("/", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-            { name = "buffer" },
-        },
-    })
-
-    cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-            { name = "path" },
-        }, { { name = "cmdline", option = { ignore_cmds = { "!" } } } }),
-    })
+    lsp_keybinds.setup_cmp_cmdline()
 
     lsp.setup_nvim_cmp({
-        mapping = cmp_mappings,
+        mapping = lsp_keybinds.get_cmp_keybinds(),
+        window = lsp_keybinds.get_cmp_window_config(),
     })
 
     lsp.set_preferences({

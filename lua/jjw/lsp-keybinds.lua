@@ -35,31 +35,32 @@ function M.set_formatting(client, bufnr)
     })
 end
 
-function M.set_cmp()
-    local cmp = require("cmp")
-    cmp.setup({
-        snippet = {
-            expand = function(args)
-                require("luasnip").lsp_expand(args.body)
-            end,
+function M.get_cmp_window_config()
+    return {
+        completion = {
+            winhighlight = "Normal:CmpMenu,FloatBorder:Pmenu,CursorLine:CmpCursorLine,search:None",
         },
-        mapping = cmp.mapping.preset.insert({
-            ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-            ["<C-f>"] = cmp.mapping.scroll_docs(4),
-            ["<C-e>"] = cmp.mapping.abort(),
-            ["<C-y>"] = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
-            }),
-        }),
-        sources = cmp.config.sources({
-            { name = "nvim_lsp" },
-            { name = "luasnip" },
-        }, {
-            { name = "buffer" },
+        documentation = {
+            border = "rounded",
+        },
+    }
+end
+
+function M.get_cmp_keybinds()
+    local cmp = require("cmp")
+    return cmp.mapping.preset.insert({
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<C-y>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
         }),
     })
+end
 
+function M.setup_cmp_cmdline()
+    local cmp = require("cmp")
     cmp.setup.cmdline("/", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
@@ -73,6 +74,26 @@ function M.set_cmp()
             { name = "path" },
         }, { { name = "cmdline", option = { ignore_cmds = { "!" } } } }),
     })
+end
+
+function M.set_cmp()
+    local cmp = require("cmp")
+    cmp.setup({
+        snippet = {
+            expand = function(args)
+                require("luasnip").lsp_expand(args.body)
+            end,
+        },
+        mapping = M.get_cmp_keybinds(),
+        window = M.get_cmp_window_config(),
+        sources = cmp.config.sources({
+            { name = "nvim_lsp" },
+            { name = "luasnip" },
+        }, {
+            { name = "buffer" },
+        }),
+    })
+    M.setup_cmp_cmdline()
 end
 
 return M
