@@ -35,30 +35,6 @@ function M.set_formatting(client, bufnr)
     })
 end
 
-function M.get_cmp_window_config()
-    return {
-        completion = {
-            winhighlight = "Normal:CmpMenu,FloatBorder:Pmenu,CursorLine:CmpCursorLine,search:None",
-        },
-        documentation = {
-            border = "rounded",
-        },
-    }
-end
-
-function M.get_cmp_keybinds()
-    local cmp = require("cmp")
-    return cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<C-y>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        }),
-    })
-end
-
 function M.setup_cmp_cmdline()
     local cmp = require("cmp")
     cmp.setup.cmdline("/", {
@@ -84,8 +60,23 @@ function M.set_cmp()
                 require("luasnip").lsp_expand(args.body)
             end,
         },
-        mapping = M.get_cmp_keybinds(),
-        window = M.get_cmp_window_config(),
+        mapping = cmp.mapping.preset.insert({
+            ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+            ["<C-f>"] = cmp.mapping.scroll_docs(4),
+            ["<C-e>"] = cmp.mapping.abort(),
+            ["<C-y>"] = cmp.mapping.confirm({
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = true,
+            }),
+        }),
+        window = {
+            completion = {
+                winhighlight = "Normal:CmpMenu,FloatBorder:Pmenu,CursorLine:CmpCursorLine,search:None",
+            },
+            documentation = {
+                border = "rounded",
+            },
+        },
         sources = cmp.config.sources({
             { name = "nvim_lsp" },
             { name = "luasnip" },

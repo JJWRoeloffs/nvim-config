@@ -114,6 +114,7 @@ vim.cmd([[
   " Makes java annotations not PreProc
   hi javaAnnotation  ctermfg=12
   " Makes not everything link back to type. `class` should be keyword coloured.
+  hi javaConceptKind ctermfg=12
   hi javaMethodDecl  ctermfg=4  cterm=bold
   hi javaScopeDecl   ctermfg=4  cterm=bold
   hi javaClassDecl   ctermfg=4  cterm=bold

@@ -5,6 +5,7 @@ local function setup()
     vim.opt_global.shortmess:remove("F")
 
     local lsp_keybinds = require("jjw.lsp-keybinds")
+    lsp_keybinds.set_cmp()
 
     metals_config.settings = {
         showImplicitArguments = true,
@@ -67,11 +68,28 @@ return {
     dependencies = {
         -- Hard
         { "nvim-lua/plenary.nvim" },
+
+        -- LSP Support
+        { "neovim/nvim-lspconfig" },
+        { "williamboman/mason.nvim" },
+        { "williamboman/mason-lspconfig.nvim" },
+
+        -- Autocompletion
+        { "hrsh7th/nvim-cmp" },
         { "hrsh7th/cmp-nvim-lsp" },
+        { "hrsh7th/cmp-buffer" },
+        { "hrsh7th/cmp-path" },
+        { "hrsh7th/cmp-cmdline" },
+        { "saadparwaiz1/cmp_luasnip" },
+        { "hrsh7th/cmp-nvim-lua" },
+        { "folke/lsp-colors.nvim" },
+
+        -- Snippets
+        { "L3MON4D3/LuaSnip" },
+        { "rafamadriz/friendly-snippets" },
 
         -- for integration
         { "mfussenegger/nvim-dap", config = require("plugins.nvim-dap").setup },
-        { "VonHeikemen/lsp-zero.nvim", config = require("plugins.lsp-zero").setup },
         require("plugins.telescope"),
         require("plugins.lightline"),
     },
