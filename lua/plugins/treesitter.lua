@@ -5,10 +5,12 @@ return {
         ensure_installed = {
             -- Basic vim stuff
             "vim",
+            "vimdoc",
             "query",
             "lua",
+            "luadoc",
             "markdown",
-            "markdown_inline",
+            "markdown-inline",
 
             -- Main languages
             "java",
