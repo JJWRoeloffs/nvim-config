@@ -87,7 +87,7 @@ vim.cmd([[
   hi Number          ctermfg=9
   hi Boolean         ctermfg=6
   hi Special         ctermfg=13
-  hi Ignore          ctermfg=0   cterm=italic
+  hi Ignore          ctermfg=8   cterm=italic
   hi PreProc         ctermfg=8   cterm=bold
   hi Operator        ctermfg=5   cterm=bold
   hi! link Error     ErrorMsg
