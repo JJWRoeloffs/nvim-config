@@ -53,6 +53,22 @@ function M.setup_cmp_cmdline()
 end
 
 function M.set_cmp()
+    vim.cmd([[
+        " Menu
+        hi CmpMenu   ctermbg=0
+        hi CmpCursorLine ctermbg=8
+        " Colour the item kinds correctly
+        hi! CmpItemAbbrDeprecated ctermbg=NONE cterm=strikethrough ctermfg=9
+        hi! link CmpItemKindVariable Identifier
+        hi! link CmpItemKindInterface Type
+        hi! link CmpItemKindText String
+        hi! link CmpItemKindFunction Function
+        hi! link CmpItemKindMethod CmpItemKindFunction
+        hi! link CmpItemKindKeyword Keyword
+        hi! link CmpItemKindProperty CmpItemKindKeyword
+        hi! link CmpItemKindUnit CmpItemKindKeyword
+    ]])
+
     local cmp = require("cmp")
     cmp.setup({
         snippet = {
