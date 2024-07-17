@@ -13,8 +13,8 @@ end
 return {
     "mfussenegger/nvim-dap-python",
     dependencies = {
-        { "mfussenegger/nvim-dap", config = require("plugins.nvim-dap").setup },
         { "williamboman/mason.nvim" },
+        "nvim-dap",
     },
     ft = { "python" },
     config = setup,

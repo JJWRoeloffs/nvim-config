@@ -55,7 +55,7 @@ local function setup()
     local nvim_metals_group =
         vim.api.nvim_create_augroup("nvim-metals", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "scala", "sbt", "java" },
+        pattern = { "scala", "sbt", "java", "sc" },
         callback = function()
             metals.initialize_or_attach(metals_config)
         end,
@@ -89,10 +89,10 @@ return {
         { "rafamadriz/friendly-snippets" },
 
         -- for integration
-        { "mfussenegger/nvim-dap", config = require("plugins.nvim-dap").setup },
-        require("plugins.telescope"),
-        require("plugins.lightline"),
+        "nvim-dap",
+        "telescope",
+        "lightline",
     },
-    ft = { "scala", "sbt", "java" },
+    ft = { "scala", "sbt", "java", "sc" },
     config = setup,
 }
