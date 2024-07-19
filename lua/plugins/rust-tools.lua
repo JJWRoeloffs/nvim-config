@@ -88,10 +88,10 @@ return {
             { "L3MON4D3/LuaSnip" },
             { "rafamadriz/friendly-snippets" },
 
-            { "williamboman/mason.nvim" },
+            { "williamboman/mason.nvim", config = require("mason").setup },
 
-            "nvim-dap",
-            "telescope",
+            require("plugins.nvim-dap"),
+            require("plugins.telescope"),
         },
         init = function()
             vim.g.rustaceanvim = {

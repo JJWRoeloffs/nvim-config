@@ -14,7 +14,7 @@ return {
     "mfussenegger/nvim-dap-python",
     dependencies = {
         { "williamboman/mason.nvim" },
-        "nvim-dap",
+        require("plugins.nvim-dap"),
     },
     ft = { "python" },
     config = setup,

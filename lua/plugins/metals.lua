@@ -89,9 +89,9 @@ return {
         { "rafamadriz/friendly-snippets" },
 
         -- for integration
-        "nvim-dap",
-        "telescope",
-        "lightline",
+        require("plugins.nvim-dap"),
+        require("plugins.telescope"),
+        require("plugins.lightline"),
     },
     ft = { "scala", "sbt", "java", "sc" },
     config = setup,
