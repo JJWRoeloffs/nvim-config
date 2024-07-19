@@ -7,4 +7,5 @@ return {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = setup,
+    keys = { { "-", mode = "n" }, "<CMD>Oil<CR>" },
 }
