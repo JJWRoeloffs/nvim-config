@@ -6,6 +6,13 @@ local function ormolu()
     }
 end
 
+local function scalafmt()
+    return {
+        exe = "scalafmt",
+        stdin = false,
+    }
+end
+
 local function setup()
     local lsp_keybinds = require("jjw.lsp-keybinds")
 
@@ -41,6 +48,14 @@ local function setup()
             },
             cpp = {
                 require("formatter.filetypes.cpp").clangformat,
+            },
+
+            java = {
+                require("formatter.filetypes.java").clangformat,
+            },
+
+            scala = {
+                scalafmt,
             },
 
             go = {

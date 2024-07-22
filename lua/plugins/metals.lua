@@ -18,7 +18,6 @@ local function setup()
     metals_config.on_attach = function(client, bufnr)
         metals.setup_dap()
         lsp_keybinds.set_keybinds(client, bufnr)
-        lsp_keybinds.set_formatting(client, bufnr)
     end
 
     metals_config.init_options.statusBarProvider = "on"
