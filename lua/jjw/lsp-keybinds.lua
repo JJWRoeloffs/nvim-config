@@ -1,5 +1,17 @@
 local M = {}
 
+M.vt_toggle = false
+function M.toggle_virtual_text(to)
+    M.vt_toggle = to or not M.vt_toggle
+    vim.diagnostic.config({ virtual_text = M.vt_toggle })
+end
+
+M.vo_toggle = false
+function M.toggle_virtual_underline(to)
+    M.vo_toggle = to or not M.vo_toggle
+    vim.diagnostic.config({ underline = M.vo_toggle })
+end
+
 function M.set_keybinds(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
     local telescope = require("telescope.builtin")
@@ -8,13 +20,15 @@ function M.set_keybinds(client, bufnr)
     vim.keymap.set("n", "<leader>gt", telescope.lsp_type_definitions, opts)
     vim.keymap.set("n", "rn", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>v", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "<leader>vf", vim.diagnostic.open_float, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, opts)
     vim.keymap.set("n", "gi", telescope.lsp_implementations, opts)
     vim.keymap.set("n", "gr", telescope.lsp_references, opts)
     vim.keymap.set("n", "gDs", telescope.lsp_document_symbols, opts)
     vim.keymap.set("n", "gws", telescope.lsp_workspace_symbols, opts)
+    vim.keymap.set("n", "<leader>vt", M.toggle_virtual_text, opts)
+    vim.keymap.set("n", "<leader>vo", M.toggle_virtual_underline, opts)
 end
 
 function M.setup_cmp_cmdline()
