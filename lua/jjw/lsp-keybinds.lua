@@ -2,13 +2,19 @@ local M = {}
 
 M.vt_toggle = false
 function M.toggle_virtual_text(to)
-    M.vt_toggle = to or not M.vt_toggle
+    if to ~= nil then
+        M.vt_toggle = not to
+    end
+    M.vt_toggle = not M.vt_toggle
     vim.diagnostic.config({ virtual_text = M.vt_toggle })
 end
 
 M.vo_toggle = false
 function M.toggle_virtual_underline(to)
-    M.vo_toggle = to or not M.vo_toggle
+    if to ~= nil then
+        M.vt_toggle = not to
+    end
+    M.vo_toggle = not M.vo_toggle
     vim.diagnostic.config({ underline = M.vo_toggle })
 end
 
