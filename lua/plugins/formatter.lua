@@ -54,6 +54,10 @@ local function setup()
                 require("formatter.filetypes.java").clangformat,
             },
 
+            rust = {
+                require("formatter.filetypes.rust").rustfmt,
+            },
+
             scala = {
                 scalafmt,
             },

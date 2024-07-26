@@ -35,7 +35,6 @@ local function on_attach(client, bufnr)
 
     local lsp_keybinds = require("jjw.lsp-keybinds")
     lsp_keybinds.set_keybinds(client, bufnr)
-    lsp_keybinds.set_formatting(client, bufnr)
 
     vim.keymap.set("n", "<leader>rem", function()
         vim.cmd.RustLsp("expandMacro")
