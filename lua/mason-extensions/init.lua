@@ -65,7 +65,7 @@ local function wrap(func)
     return function(argument)
         if type(argument) == "string" then
             inner(argument)
-        elseif type(argument) == "table" and vim.tbl_islist(argument) then
+        elseif type(argument) == "table" and vim.islist(argument) then
             for _, package_name in ipairs(argument) do
                 inner(package_name)
             end
