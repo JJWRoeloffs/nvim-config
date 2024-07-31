@@ -1,7 +1,7 @@
 local function setup()
-    local path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
+    -- `python3 -m debugpy --version` must work in the shell this editor is in.
     local dap = require("dap-python")
-    dap.setup(path)
+    dap.setup("python3")
 
     require("mason-extensions").ensure_installed("debugpy")
 
@@ -13,10 +13,14 @@ end
 return {
     "mfussenegger/nvim-dap-python",
     dependencies = {
-        { "williamboman/mason.nvim" },
+        { "williamboman/mason.nvim", config = require("mason").setup },
         {
             "mfussenegger/nvim-dap",
             config = require("plugins.nvim-dap").config,
+        },
+        {
+            "nvim-treesitter/nvim-treesitter",
+            config = require("plugins.treesitter").config,
         },
     },
     ft = { "python" },
