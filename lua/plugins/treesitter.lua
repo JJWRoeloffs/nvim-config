@@ -1,7 +1,7 @@
-return {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    opts = {
+local function setup()
+    require("mason-extensions").ensure_installed("tree-sitter-cli")
+    require("nvim-treesitter.configs").setup({
+        -- A list of parser names, or "all" (the listed parsers MUST always be installed)
         ensure_installed = {
             -- Basic vim stuff
             "vim",
@@ -10,7 +10,7 @@ return {
             "lua",
             "luadoc",
             "markdown",
-            "markdown-inline",
+            "markdown_inline",
 
             -- Main languages
             "java",
@@ -53,7 +53,18 @@ return {
             "toml",
             "yaml",
         },
-        highlight = { enable = true },
-        indent = { enable = true },
+        modules = {},
+        sync_install = true,
+        ignore_install = {},
+        auto_install = false,
+    })
+end
+
+return {
+    "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+        { "williamboman/mason.nvim", config = require("mason").setup },
     },
+    build = ":TSUpdate",
+    config = setup,
 }
