@@ -2,7 +2,13 @@ local function setup_crates()
     local crates = require("crates")
     local opts = { silent = true }
 
-    crates.setup()
+    crates.setup({
+        completion = {
+            cmp = {
+                enabled = true,
+            },
+        },
+    })
 
     vim.keymap.set("n", "<leader>rct", crates.toggle, opts)
     vim.keymap.set("n", "<leader>rcr", crates.reload, opts)
@@ -26,6 +32,8 @@ end
 
 local function on_attach(client, bufnr)
     require("mason-extensions").ensure_installed({ "codelldb" })
+    -- requirements need to actually be loaded for lazy to recognize them.
+    require("dap")
     -- Additionally:
     -- rustup component add rust-analyzer
     -- rustup component add rust-src
@@ -66,6 +74,8 @@ local function on_attach(client, bufnr)
     vim.keymap.set("n", "<leader>ree", function()
         vim.cmd.RustLsp("explainError")
     end, opts)
+
+    vim.keymap.set("n", "<leader>rl", ":RustLsp")
 
     require("jjw.lsp-keybinds").set_cmp()
 end
