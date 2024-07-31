@@ -88,9 +88,15 @@ return {
         { "rafamadriz/friendly-snippets" },
 
         -- for integration
-        require("plugins.nvim-dap"),
-        require("plugins.telescope"),
-        require("plugins.lightline"),
+        {
+            "mfussenegger/nvim-dap",
+            config = require("plugins.nvim-dap").config,
+        },
+        {
+            "nvim-telescope/telescope.nvim",
+            config = require("plugins.telescope").config,
+        },
+        { "itchyny/lightline.vim", config = require("plugins.lightline").config },
     },
     ft = { "scala", "sbt", "java", "sc" },
     config = setup,

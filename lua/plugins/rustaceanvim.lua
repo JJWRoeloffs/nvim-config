@@ -99,8 +99,14 @@ return {
 
             { "williamboman/mason.nvim", config = require("mason").setup },
 
-            require("plugins.nvim-dap"),
-            require("plugins.telescope"),
+            {
+                "mfussenegger/nvim-dap",
+                config = require("plugins.nvim-dap").config,
+            },
+            {
+                "nvim-telescope/telescope.nvim",
+                config = require("plugins.telescope").config,
+            },
         },
         init = function()
             vim.g.rustaceanvim = {

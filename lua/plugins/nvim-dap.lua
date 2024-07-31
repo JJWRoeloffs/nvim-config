@@ -29,6 +29,7 @@ end
 
 local function setup()
     local dap, dapui = require("dap"), require("dapui")
+    dapui.setup()
     dap.listeners.before.attach.dapui_config = function()
         dapui.open()
     end
@@ -62,9 +63,8 @@ return {
     dependencies = {
         { "rcarriga/nvim-dap-ui" },
         { "nvim-neotest/nvim-nio" },
-        require("plugins.treesitter"),
     },
     ft = { "cpp", "c" },
-    setup = setup,
+    config = setup,
     build = "npm i @vscode/codicons",
 }
