@@ -23,7 +23,7 @@ local function setup()
             "lua_ls",
 
             -- Javascript/Typescript/HTML/CSS
-            "tsserver",
+            "ts_ls",
             "html",
 
             -- Python
