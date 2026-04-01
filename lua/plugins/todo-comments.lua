@@ -2,9 +2,8 @@ local function setup()
     local todo_comments = require("todo-comments")
 
     todo_comments.setup({
-        signs = true, -- show icons in the signs column
-        sign_priority = 8, -- sign priority
-        -- keywords recognized as todo comments
+        signs = true,
+        sign_priority = 8,
         keywords = {
             FIX = {
                 icon = "F ",
@@ -12,8 +11,8 @@ local function setup()
                 alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
             },
             TODO = { icon = "I ", color = "info" },
-            HACK = { icon = "H ", color = "warning" },
-            WARN = { icon = "W ", color = "warning", alt = { "WARNING", "XXX" } },
+            HACK = { icon = "H ", color = "warning", alt = { "HACKFIX" } },
+            WARN = { icon = "W ", color = "warning", alt = { "WARNING" } },
             PERF = { icon = "P ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
             NOTE = { icon = "N ", color = "hint", alt = { "INFO" } },
             TEST = {
