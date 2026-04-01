@@ -83,7 +83,7 @@ end
 return {
     {
         "mrcjkb/rustaceanvim",
-        version = "^5", -- Recommended
+        version = "^8", -- Recommended
         dependencies = {
             { "hrsh7th/nvim-cmp" },
             { "hrsh7th/cmp-nvim-lsp" },
@@ -119,6 +119,7 @@ return {
             }
         end,
         ft = { "rust" },
+        lazy = false,
     },
     {
         "saecki/crates.nvim",

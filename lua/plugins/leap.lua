@@ -5,7 +5,7 @@ local function setup()
 end
 
 return {
-    "ggandor/leap.nvim",
+    url = "https://codeberg.org/andyg/leap.nvim",
     dependencies = { "tpope/vim-repeat" },
     config = setup,
 }
