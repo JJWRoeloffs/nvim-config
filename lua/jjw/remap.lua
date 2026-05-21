@@ -29,5 +29,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 vim.keymap.set("n", "<C-c>", "<CMD>noh<CR>")
 
+vim.keymap.set("n", "<leader>tz", "<CMD>set invspell<CR>")
+
 vim.keymap.set("n", "<leader>x", "<CMD>!chmod -x %<CR>")
 vim.keymap.set("n", "<leader>X", "<CMD>!chmod +x %<CR>")
